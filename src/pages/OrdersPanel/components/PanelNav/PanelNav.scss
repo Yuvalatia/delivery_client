@@ -1,0 +1,12 @@
+@import '../../../../styles/colors.scss';
+
+.panel-nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px 0px;
+    background-color: $background-white-color;
+    .app-header {
+        align-self: center;
+    }
+}
