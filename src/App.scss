@@ -1,0 +1,14 @@
+@import './styles/colors';
+html {
+    overflow: hidden;
+    height: 100vh;
+    body {
+        overflow: hidden;
+        height: 100%;
+        margin: 0;
+        background-color: $background-grey-color;
+    }
+    #root {
+        height: 100%
+    }
+}
