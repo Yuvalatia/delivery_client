@@ -1,7 +1,14 @@
+@import '../../styles/mixins.scss';
+
 .card.orders-panel {
     min-width: 60%;
     min-height: 600px;
     display: grid;
     grid-template-columns: 20% 80%;
     grid-template-rows: 100%;
+}
+
+@include laptop {
+    min-width: 90%;
+    min-height: 90vh;
 }
