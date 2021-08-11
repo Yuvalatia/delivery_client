@@ -9,6 +9,8 @@
 }
 
 @include laptop {
-    min-width: 90%;
-    min-height: 90vh;
+    .card.orders-panel {
+        min-width: 90%;
+        min-height: 90vh;
+    }
 }
