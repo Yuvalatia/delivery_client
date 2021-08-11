@@ -11,3 +11,8 @@ export const userRegister = async (details) => {
 export const userLogin = async (details) => {
     return await USER_SERVICE.post('/login', details);
 }
+
+export const getUserDetails = async (userAuthToken) => {
+    return await USER_SERVICE.post('/details',null,
+    { headers: {"Authorization" : `Bearer ${userAuthToken}`} })
+}

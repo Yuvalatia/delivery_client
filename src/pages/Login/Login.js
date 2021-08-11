@@ -1,4 +1,6 @@
-import React,{useState} from 'react';
+import React,{useState, useContext} from 'react';
+import { Redirect } from 'react-router-dom';
+import AuthContext from '../../context/AuthContext';
 import './Login.scss';
 
 import { CenteralContainer } from '../../components/layout';
@@ -6,8 +8,14 @@ import { AppHeader } from '../../components/shared';
 import { LoginForm, RegisterForm } from './components'
 
 const Login = () => {
+    const {userAuthToken} = useContext(AuthContext);
     const [formDisplayed, setFormDisplayed] = useState(true);
-    
+
+    const toggleFormDisplayed = () => {
+        setFormDisplayed(!formDisplayed);
+    }
+
+
     const rednerDisplayForm = () => {
         return (
             formDisplayed ? 
@@ -16,11 +24,11 @@ const Login = () => {
         );
     }
 
-    const toggleFormDisplayed = () => {
-        setFormDisplayed(!formDisplayed);
+    if(userAuthToken){
+        return <Redirect to='/panel'/>;
     }
     
-    return(
+    return (
         <CenteralContainer>
             <AppHeader />
             {rednerDisplayForm()}
