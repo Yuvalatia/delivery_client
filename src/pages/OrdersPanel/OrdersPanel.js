@@ -12,8 +12,7 @@ import { CenteralContainer } from '../../components/layout';
 const OrdersPanel = () => {
     const {userAuthToken} = useContext(AuthContext);
     const [userDetails, setUserDetails] = useState(null);
-    // loading state
-
+    
     useEffect(() => {
         const getUserDetailsWithToken = async () => {
             try{
@@ -33,20 +32,23 @@ const OrdersPanel = () => {
             return <Redirect to='/' />
         }
         if(!userDetails){
-            return <Loader active inline />;
+            return ( 
+                <CenteralContainer>
+                    <Loader active inline />
+                </CenteralContainer>
+             );
         }
         return (
+            <CenteralContainer>
             <Card className="orders-panel">
                 <PanelNav userDetails={userDetails} />
                 <PanelBody />
             </Card>
+            </CenteralContainer>
         )
     }
-    return(
-       <CenteralContainer>
-           {renderOrdersPanel()}
-       </CenteralContainer>
-    )
+    return renderOrdersPanel();
+       
 }
 
 export default OrdersPanel;

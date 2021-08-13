@@ -3,7 +3,7 @@ html {
     overflow: hidden;
     height: 100vh;
     body {
-        overflow-y: scroll;
+        overflow-y: scroll !important;
         height: 100%;
         margin: 0;
         background-color: $background-grey-color;
