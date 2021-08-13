@@ -1,11 +1,11 @@
 import React,{useState, useContext, useEffect} from 'react';
 import { Table, Header } from 'semantic-ui-react';
 import AuthContext from '../../../../context/AuthContext';
-import './OrdersTable.scss';
+import './OrdersTableControl.scss';
 
 import { getUserOrders } from '../../../../api/orders.api';
 
-const OrdersTable = () => {
+const OrdersTableControl = () => {
     const { userAuthToken } = useContext(AuthContext);
     const [orders, setOrders] = useState([]);
     /*const [isLoading, setIsLoading] = useState(false);*/
@@ -52,4 +52,4 @@ const OrdersTable = () => {
         </div>
     )
 }
-export default OrdersTable;
+export default OrdersTableControl;

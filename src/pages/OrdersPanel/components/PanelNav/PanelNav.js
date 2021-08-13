@@ -5,6 +5,7 @@ import './PanelNav.scss';
 
 import { AppHeader } from '../../../../components/shared';
 import { UserDetailsLabel } from '..';
+import NavItem from './components/NavItem/NavItem';
 
 const PanelNav = ({userDetails}) => {
     const { setUserAuthToken } = useContext(AuthContext);
@@ -13,17 +14,14 @@ const PanelNav = ({userDetails}) => {
         localStorage.removeItem('token');
         setUserAuthToken('');
     }
+
     return(
         <div className="panel-nav">
             <AppHeader size="medium" />
             <UserDetailsLabel role={userDetails.role} full_name={userDetails.full_name} />
             <List selection verticalAlign='middle'>
-                <List.Item onClick={() => logoutUser()}>
-                    <List.Icon name='log out' />
-                    <List.Content>
-                        <List.Header>Logout</List.Header>
-                    </List.Content>
-                </List.Item>
+                <NavItem iconName='add to cart' title='New product' visable={userDetails.role === 1}/>
+                <NavItem onClick={() => logoutUser()} iconName='log out' title='Logout' />
             </List>
         </div>
     );

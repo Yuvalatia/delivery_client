@@ -1,13 +1,13 @@
 import React from 'react';
 import './PanelBody.scss';
 
-import { OrdersTable } from '..';
+import { OrdersTableControl } from '..';
 
 const PanelBody = () => {
 
     return(
         <div className="panel-body">
-            <OrdersTable />
+            <OrdersTableControl />
         </div>
     )
 };
