@@ -2,13 +2,14 @@ import React,{useState, useEffect, useContext} from 'react';
 import { Table, Button } from 'semantic-ui-react';
 
 import { getProducts } from '../../../../../../api/products.api';
-//import { setNewOrders } from '../../../../../../api/orders.api';
+import { setNewUserOrder } from '../../../../../../api/orders.api';
 import AuthContext from '../../../../../../context/AuthContext';
 
-const NewOrderForm = () => {
+const NewOrderForm = ({setOrders}) => {
     const { userAuthToken } = useContext(AuthContext);
     const [allProducts, setAllProducts] = useState([]);
     const [selectedProducts, setSelectedProducts] = useState([]);
+    const [sendingOrder, setSendingOrder] = useState(false);
 
     useEffect(() => {
         const getProductsFromAPI = async () => {
@@ -20,7 +21,24 @@ const NewOrderForm = () => {
             }
         }
         getProductsFromAPI();
-    },[userAuthToken])
+    },[userAuthToken]);
+
+    const submitOrder =  async () => {
+        if(selectedProducts.length === 0){
+            return;
+        }
+        setSendingOrder(true);
+        try{
+            const response = await setNewUserOrder(userAuthToken, selectedProducts);
+            setSendingOrder(false);
+            if(response.data){
+                setOrders(response.data);
+            }
+        }catch(error){
+            console.err(error);
+            setSendingOrder(false);
+        }
+    }
 
     const productSelectHandler = (event) => {
         if(event.target.checked){
@@ -49,7 +67,7 @@ const NewOrderForm = () => {
                         {renderProductList()}
                 </Table.Body>
                 </Table>
-                <Button>Send Order</Button>
+                <Button loading={sendingOrder} onClick={() => submitOrder()}>Send Order</Button>
                 {JSON.stringify(selectedProducts)}
             </div>
         )

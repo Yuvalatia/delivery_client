@@ -32,7 +32,7 @@ const OrdersTableControl = () => {
         <div className="orders-table-control">
             <DividerHeader title='Orders' iconName='ordered list'/>
             <div className="control-bar">
-                <Button color='black' size='mini' onClick={() => setModalContent('New Order', <NewOrderForm />)}>New Order</Button>
+                <Button color='black' size='mini' onClick={() => setModalContent('New Order', <NewOrderForm setOrders={setOrders}/>)}>New Order</Button>
                 {modal}
             </div>
             <OrdersTable orders={orders} />

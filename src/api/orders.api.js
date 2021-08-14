@@ -10,6 +10,14 @@ export const getUserOrders = async (userAuthToken) => {
 };
 
 export const setNewUserOrder = async (userAuthToken, products) => {
-    return await ORDERS_SERVICE.put('', {products}, 
-    { headers: {"Authorization" : `Bearer ${userAuthToken}`} });
+    try{
+        const response = await ORDERS_SERVICE.put('', {products}, 
+        { headers: {"Authorization" : `Bearer ${userAuthToken}`} });
+        if(response.data){
+            return await getUserOrders(userAuthToken);
+        }
+    }catch(error){
+        console.error(error);
+        return;
+    }
 }
